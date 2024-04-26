@@ -17,8 +17,12 @@ Secondly, produce the symmetry of the input image according to the
 
 ## Prerequisite
 
-- OpenCV 4.9.0
-- g++ 13.1.0
+Please note that the specified versions are not definitive, as the code has not been tested with other versions of the prerequisites. But it is still recommended to use the specified versions. However, it is important to note that this code will not work on Windows as CMake is not configured for it.
+
+- OpenCV ^4.9.0
+- g++ ^13.0.0
+- cmake ^3.27.0
+- Ubuntu 23.10
 
 ## Build
 
