@@ -9,11 +9,6 @@ Enclosed you will find two images. For each image perform the following operatio
  - Apply local histogram equalization on the input images with different window sizes and obtain the output images. – 20 points
  - Comment on the results. - 15 points
 
-RULES FOR THE HOMEWORK
-
-Write everything (i.g. your name, introduction to homework, methods you used, results as images, comments, discussion, etc.) about the homework on a word document, name it as yourname_lastname_hw2.doc, add all the source codes to appendix of the document. 
-Submit your homework as a turnitin assignment
-
 ## Prerequisite
 
 Please note that the specified versions are not definitive, as the code has not been tested with other versions of the prerequisites. But it is still recommended to use the specified versions. However, it is important to note that this code will not work on Windows as CMake is not configured for it.
@@ -23,17 +18,36 @@ Please note that the specified versions are not definitive, as the code has not 
 - cmake ^3.27.0
 - Ubuntu 23.10
 
-## Build
+## Release 
+
+### Compile
 
 ```bash
-mkdir build
-cd build
+mkdir release
+cd release
 cmake ..
-make
-cd ..
+make -j$(nproc)
 ```
 
-## Run
+### Run
+
+```bash
+cd bin
+./main
+```
+
+## Debug
+
+### Compile
+
+```bash
+mkdir debug
+cd debug
+cmake -DCMAKE_BUILD_TYPE=debug ..
+make -j$(nproc)
+```
+
+### Run
 
 ```bash
 cd bin

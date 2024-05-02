@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.5)
 project(HW2)
 
 # Set the directory for the executable files
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/release/bin)
+
+# Check if DCMAKE_BUILD_TYPE is Debug
+if(CMAKE_BUILD_TYPE STREQUAL "debug")
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/debug/bin)
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -DDEBUG")
+endif()
+
+# Print warnings and errors
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
 # Set compilation flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/local/include/opencv4")
@@ -12,8 +21,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Add source file
 add_executable(main src/main.cpp)
 
+# Add libraries
+add_library(Histogram src/Histogram/Histogram.hpp src/Histogram/Histogram.cpp)
+add_subdirectory(src/matplotplusplus)
+
 # Link libraries
-target_link_libraries(main 
+target_link_libraries(main
+    matplot
+    Histogram
     opencv_gapi 
     opencv_stitching 
     opencv_aruco 
